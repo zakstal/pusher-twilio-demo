@@ -1,0 +1,11 @@
+<article class="post">
+
+  <%= post.body %>
+
+  <footer>
+    <strong><%= post.sender %></strong> &mdash;
+    <time><%= time_ago_in_words(post.created_at) %> ago</time>
+  </footer>
+
+  <hr>
+</article>

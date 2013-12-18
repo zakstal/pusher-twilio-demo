@@ -1,0 +1,25 @@
+<form class="new-post" action="<%= posts_url %>" method="post">
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>Sender<br>
+  <input type="text" name="post[sender]" value=""></label>
+
+  <br>
+
+  <label>Message<br>
+  <textarea name="post[body]"></textarea></label>
+
+  <br>
+
+  <button>Send</button>
+
+</form>
+
+<hr>
+
+<h1>Feedback</h1>
+
+<section class="posts">
+  <%= render @posts %>
+</section>
