@@ -27,6 +27,7 @@ gem 'binding_of_caller'
 
 gem 'figaro'
 gem 'pusher'
+gem 'twilio-ruby'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

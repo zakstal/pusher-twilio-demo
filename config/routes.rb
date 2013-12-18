@@ -1,5 +1,7 @@
 LiveFeedback::Application.routes.draw do
 
+  post "inbound/twilio" => "inbound#twilio"
+
   resources :posts, only: [:index, :create]
   root to: "posts#index"
 

@@ -8,9 +8,7 @@ class PostsController < ApplicationController
   def create
     post = Post.create!(params[:post])
 
-    post_partial = render_to_string(partial: "posts/post", locals: {post: post})
-    Pusher["posts"].trigger("new", post_partial)
-
+    push_post(post)
 
     if request.xhr?
       render :nothing
