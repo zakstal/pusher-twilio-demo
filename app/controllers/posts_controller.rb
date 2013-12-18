@@ -7,7 +7,16 @@ class PostsController < ApplicationController
 
   def create
     post = Post.create!(params[:post])
-    redirect_to root_url
+
+    post_partial = render_to_string(partial: "posts/post", locals: {post: post})
+    Pusher["posts"].trigger("new", post_partial)
+
+
+    if request.xhr?
+      render :nothing
+    else
+      redirect_to root_url
+    end
   end
 
 end

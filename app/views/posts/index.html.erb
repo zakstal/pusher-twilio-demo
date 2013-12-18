@@ -1,13 +1,13 @@
-<form class="new-post" action="<%= posts_url %>" method="post">
+<form class="new-post" action="<%= posts_url %>" method="post" data-remote="true">
 
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label>Sender<br>
+  <label>Your Name<br>
   <input type="text" name="post[sender]" value=""></label>
 
   <br>
 
-  <label>Message<br>
+  <label>Sighting Story<br>
   <textarea name="post[body]"></textarea></label>
 
   <br>
@@ -18,8 +18,27 @@
 
 <hr>
 
-<h1>Feedback</h1>
+<h1>Amazing Cat Sightings</h1>
 
 <section class="posts">
   <%= render @posts %>
 </section>
+
+<script src="http://js.pusher.com/2.1/pusher.min.js"></script>
+<script>
+
+  // Enable pusher logging - don't include this in production
+  Pusher.log = function(message) {
+    if (window.console && window.console.log) {
+      window.console.log(message);
+    }
+  };
+
+  var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>');
+  var channel = pusher.subscribe('posts');
+  channel.bind('new', function(data) {
+    console.log(data);
+
+    $(".posts").prepend(data);
+  });
+</script>
