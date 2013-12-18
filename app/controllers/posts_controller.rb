@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     push_post(post)
 
     if request.xhr?
-      render :nothing
+      head :created
     else
       redirect_to root_url
     end
